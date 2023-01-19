@@ -11,14 +11,20 @@ const hash=await argon2.hash(password)
 try{
     const user=new UserModel({username,email,password:hash})
     await user.save()
+    
     return res.status(201).send("user created")
 
+
 }
+
 catch(e){
     console.log(e.message)
+
     return res.send(e.message)
 }
 })
+
+
 
 
 app.post("/login",async(req,res)=>{
